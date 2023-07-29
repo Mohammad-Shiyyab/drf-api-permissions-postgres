@@ -6,6 +6,7 @@ from .serializers import ThingSerializer
 from .serializers import ThingSerializer ,PostSerializer
 
 from rest_framework.permissions import AllowAny
+from .permissions import IsOnerOrReadOnly
 # Create your views here.
 
 
@@ -17,7 +18,8 @@ class ThingListView(ListCreateAPIView):
 
 class ThingDetailView(RetrieveUpdateDestroyAPIView):  
     queryset = Thing.objects.all()
-    serializer_class = ThingSerializer  
+    serializer_class = ThingSerializer
+    permission_classes = [IsOnerOrReadOnly]  
 
 
 
